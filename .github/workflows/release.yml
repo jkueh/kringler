@@ -1,0 +1,41 @@
+# Creates a GitHub release
+on:
+  push:
+    tags: ["v*"]
+
+name: Create Release
+
+jobs:
+  test:
+    name: Build Release Artefacts
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: ^1.23
+        id: go
+
+      - name: Run tests
+        run: go test -v ./...
+
+  create_release:
+    name: Create GitHub Release
+    runs-on: ubuntu-latest
+    needs:
+      - test
+    permissions:
+      contents: write
+    steps:
+      - name: Create release
+        id: create_release
+        uses: softprops/action-gh-release@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref_name }}
+          body: |
+            Version ${{ github.ref_name }}
