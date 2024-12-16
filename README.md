@@ -1,8 +1,9 @@
 # kringler
 
-'tis the season for randomly generated lists
+'tis the season for randomly generated lists!
 
---
+I tried to be clever and write something myself, and failed to catch an error I made - So here's a version of that code,
+now with tests!
 
 ## Usage
 
@@ -71,7 +72,7 @@ You have been ~randomly~ selected to participate in an exclusive, top-secret, in
 
 You _should_ buy a present for: *{{ .Receiver }}*
 
-After the events that transpired lsat year, I am legally obligated to remind you:
+After the events that transpired last year, I am legally obligated to remind you:
 *Do not tell this person you are buying them a gift!*
 
 Please note: The budget for your gift is $50.00, or the following local equivalents:
